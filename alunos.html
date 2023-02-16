@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <title>Home +Devs2Blu</title>
+        <title>Aluno</title>
     </head>
 
     <body>
@@ -17,34 +17,55 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-              
+            
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="alunos.html">Alunos<span class="sr-only">(página atual)</span></a>
+                            <a class="nav-link" href="alunos.html">Alunos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="professores.html">Professores<span class="sr-only">(página atual)</span></a>
+                            <a class="nav-link" href="professores.html">Professores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="usuarios.html">Usuários<span class="sr-only">(página atual)</span></a>
+                            <a class="nav-link" href="usuarios.html">Usuários</a>
                         </li>
                     </ul>
+                    <div class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" name="id_busca" id="id_busca" placeholder="Digite o id do Aluno" aria-label="Pesquisar">
+                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="search()">Buscar</button>
+                    </div>
                 </div>
             </nav>
 
         </header>
 
-        <main>
+        <main class="container">
 
+            <table class="table">
+                <thead>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                </thead>
+                <tbody id="tbody_alunos">
+                    <!-- Inserção de dados via Java Scripts -->
+                </tbody>
+            </table>
 
         </main>
 
         <footer>
 
+        
+        </footer>        
+        
+        
+        <script src="js/aluno.js"></script>
 
-        </footer>
-
+        <script>
+            get_all_alunos()
+        </script>
+        
     </body>
-    
+
 </html>
