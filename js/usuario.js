@@ -1,33 +1,33 @@
-var api_url = 'http://127.0.0.1:8000/api/v1/alunos';
+var api_url = 'http://127.0.0.1:8000/api/v1/usuarios';
                
 
 /*
  * Função para pegar todos.
  */
-function get_all_alunos() {
+function get_all_usuarios() {
     // Fetch metodo JavaScript para acessar e manipular HTTP, tais como os pedidos e respostas.
     fetch(api_url)
 
     .then(response => response.text())
     .then(function(text) {
-    // variavel body acessando o documento, html manipulando tag tbody_alunos
-        let tbody = document.getElementById('tbody_alunos');
+    // variavel body acessando o documento, html manipulando tag tbody_usuarios
+        let tbody = document.getElementById('tbody_usuarios');
     // variavel let dados convertendo text para json
         let dados = JSON.parse(text);
     // tbody innerHtml recebe uma lista vazia
         tbody.innerHTML = '';
 
     // variável dados que recebe o nosso texte entra em um foreach.
-    // criamos variaáel de aluno.
-    dados.forEach(aluno => {
+    // criamos variaáel de usuário.
+    dados.forEach(usuario => {
        // tbody.innerhtml incrementando dados convertidos para incrementar nos HTML.
         tbody.innerHTML += ` <tr>
-                                <td>${aluno.id}</td>
-                                <td>${aluno.nome}</td>
-                                <td>${aluno.email}</td>
+                                <td>${usuario.id}</td>
+                                <td>${usuario.nome}</td>
+                                <td>${usuario.email}</td>
                                 <td>
-                                    <a class="btn btn-outline-warning" href="save.html?id=${aluno.id}">editar</a>
-                                    <button class="btn btn-outline-danger" onclick='remove(${aluno.id})'>deletar</button>
+                                    <a class="btn btn-outline-warning" href="save_usuario.html?id=${usuario.id}">editar</a>
+                                    <button class="btn btn-outline-danger" onclick='remove(${usuario.id})'>deletar</button>
                                 </td>
                             </tr>`;
         });
@@ -36,17 +36,17 @@ function get_all_alunos() {
 
 
 /* 
- * Função buscar por aluno.
+ * Função buscar por usuario.
  */
 function search() {
-    // variável id_aluno acessando documento HTML acessando campo idbuscar seu valor.
-    let id_aluno = document.getElementById('id_busca').value;
-    // imprimindo id_aluno.
-    console.log(id_aluno)
-    // se id_aluno for diferente de vazio.
-    if (id_aluno != '') {
+    // variável id_usuario acessando documento HTML acessando campo idbuscar seu valor.
+    let id_usuario = document.getElementById('id_busca_usuario').value;
+    // imprimindo id_usuario.
+    console.log(id_usuario)
+    // se id_usuario for diferente de vazio.
+    if (id_usuario != '') {
         // acesse api url da nossa string.
-        api_url = `${api_url}/${id_aluno}`
+        api_url = `${api_url}/${id_usuario}`
     }
     else {
         return;
@@ -56,17 +56,17 @@ function search() {
 
     .then(response => response.text())
     .then(function(text) {
-        let tbody = document.getElementById('tbody_alunos');
-        let aluno = JSON.parse(text);
-        console.log(aluno);
+        let tbody = document.getElementById('tbody_usuarios');
+        let usuario = JSON.parse(text);
+        console.log(usuario);
 
         tbody.innerHTML = ` <tr>
-                                <td>${aluno.id}</td>
-                                <td>${aluno.nome}</td>
-                                <td>${aluno.email}</td>
+                                <td>${usuario.id}</td>
+                                <td>${usuario.nome}</td>
+                                <td>${usuario.email}</td>
                                 <td>
-                                    <a class="btn btn-outline-warning" href="save.html?id=${aluno.id}">editar</a>
-                                    <button class="btn btn-outline-danger" onclick='remove(${aluno.id})'>deletar</button>
+                                    <a class="btn btn-outline-warning" href="save_usuario.html?id=${usuario.id}">editar</a>
+                                    <button class="btn btn-outline-danger" onclick='remove(${usuario.id})'>deletar</button>
                                 </td>
                             </tr>`;
     });
@@ -74,23 +74,23 @@ function search() {
 
 
 /*
- * Ela realiza uma busca de aluno por id e retorna aluno Json.
+ * Ela realiza uma busca de usuario por id e retorna usuario Json.
  */
-function get_by_id(id_aluno) {
-    let aluno = fetch(`${api_url}/${id_aluno}`)
+function get_by_id(id_usuario) {
+    let usuario = fetch(`${api_url}/${id_usuario}`)
     .then(response => response.text())
     .then(function(text) {    
         return JSON.parse(text);
     });
-    return aluno;
+    return usuario;
 }
 
 
-function load_aluno(id_aluno) {
-    get_by_id(id_aluno).then(aluno =>{
-        document.getElementById("id").value = aluno.id;
-        document.getElementById("nome").value = aluno.nome;
-        document.getElementById("email").value = aluno.email;
+function load_usuario(id_usuario) {
+    get_by_id(id_usuario).then(usuario =>{
+        document.getElementById("id").value = usuario.id;
+        document.getElementById("nome").value = usuario.nome;
+        document.getElementById("email").value = usuario.email;
     });
 }
 
@@ -105,24 +105,24 @@ function save() {
       
     if (id != '') {
         console.log('editar')
-        aluno = {"id":id, "nome": nome, "email": email}
-        update(aluno);
+        usuario = {"id": id, "nome": nome, "email": email}
+        update(usuario);
     } else {
-       aluno = {"nome": nome, "email": email}
-       create(aluno);
+       usuario = {"nome": nome, "email": email}
+       create(usuario);
    }       
 }
 
 
-function update(aluno) {
+function update(usuario) {
     let mensagem = document.getElementById("mensagem");
-    fetch(`${api_url}/${aluno.id}`,{
+    fetch(`${api_url}/${usuario.id}`,{
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(aluno)
+        body: JSON.stringify(usuario)
     })
     .then(response => {
         if (response.status == 202) {
@@ -134,7 +134,7 @@ function update(aluno) {
 }
 
 
-function create(aluno) {
+function create(usuario) {
     let mensagem = document.getElementById("mensagem");
     fetch(api_url,{
         method: 'POST',
@@ -142,7 +142,7 @@ function create(aluno) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(aluno)
+        body: JSON.stringify(usuario)
     })
     .then(response => {
         if (response.status == 201) {
@@ -154,10 +154,10 @@ function create(aluno) {
 }
 
 /*
- * Função para deletar Aluno.
+ * Função para deletar Usuário.
  */
 function remove(id) {
-    fetch(`${api_url}/${id}`,{
+    fetch(`${api_url}/${id}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json'
@@ -165,7 +165,7 @@ function remove(id) {
     })
     .then(response => {
         if (response.status == 204) {
-            get_all();
+            get_all_usuarios();
         } else {
             alert("Erro");
         }

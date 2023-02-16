@@ -21,18 +21,18 @@
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="alunos.html">Alunos<span class="sr-only">(página atual)</span></a>
+                            <a class="nav-link" href="alunos.html">Alunos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="professores.html">Professores<span class="sr-only">(página atual)</span></a>
+                            <a class="nav-link" href="professores.html">Professores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="usuarios.html">Usuários<span class="sr-only">(página atual)</span></a>
+                            <a class="nav-link" href="usuarios.html">Usuários</a>
                         </li>
                     </ul>
                     <div class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" name="id_busca_usuario" id="id_busca_usuario" placeholder="Digiteo id do Usuário" aria-label="Pesquisar">
-                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="get_usuario()">Buscar</button>
+                        <input class="form-control mr-sm-2" type="search" name="id_busca_usuario" id="id_busca_usuario" placeholder="Digite o id do Usuário" aria-label="Pesquisar">
+                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="search()">Buscar</button>
                     </div>
                 </div>
             </nav>
@@ -52,16 +52,21 @@
                 </tbody>
             </table>
 
-            <a href="usuarios.html">Carregar Todos</a>
-
         </main>
 
-        <footer>
+        <footer class="container"></footer>
 
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-outline-primary my-2 my-sm-0" href="usuarios.html">Recarregar</a>
+            </div>
 
-        </footer>    
+        </footer>      
 
-        <script src="get.js"></script>
+        <script src="js/usuario.js"></script>
+
+        <script>
+            get_all_usuarios()
+        </script>
 
     </body>
 

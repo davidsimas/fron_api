@@ -105,7 +105,7 @@ function save() {
       
     if (id != '') {
         console.log('editar')
-        aluno = {"id":id, "nome": nome, "email": email}
+        aluno = {"id": id, "nome": nome, "email": email}
         update(aluno);
     } else {
        aluno = {"nome": nome, "email": email}
@@ -157,7 +157,7 @@ function create(aluno) {
  * Função para deletar Aluno.
  */
 function remove(id) {
-    fetch(`${api_url}/${id}`,{
+    fetch(`${api_url}/${id}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json'
@@ -165,7 +165,7 @@ function remove(id) {
     })
     .then(response => {
         if (response.status == 204) {
-            get_all();
+            get_all_alunos();
         } else {
             alert("Erro");
         }
